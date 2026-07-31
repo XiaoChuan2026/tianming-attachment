@@ -108,12 +108,9 @@ def cover():
     # 卖点小字
     sf=F(32)
     draw_text(d,(W/2,410),"看清你的相处模式，把关系处得更舒服",sf,fill=C_MUTED)
-    # 「依恋」圆圈
-    cx,cy=540,640
-    d.ellipse([cx-180,cy-180,cx+180,cy+180], outline=C_GOLD, width=5)
-    d.ellipse([cx-150,cy-150,cx+150,cy+150], outline=C_GOLD2, width=2)
-    ef=F(120,True)
-    draw_text(d,(cx,cy),"依恋",ef,fill=C_TEXT)
+    # 中间大字「你的依恋类型」
+    mf=F(96,True)
+    draw_text(d,(W/2,640),"你的依恋类型",mf,fill=C_GOLD)
     # 类型小字
     tf2=F(34,True)
     draw_text(d,(W/2,860),"4 大依恋类型 · 8 种细分风格",tf2,fill=C_GOLD2)
