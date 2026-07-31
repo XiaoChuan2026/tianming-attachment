@@ -136,43 +136,40 @@ def cover():
     img.save(os.path.join(WS,"tianming_attachment_cover.png"))
     print("cover saved")
 
-# ============ DETAIL 1080 x auto ============
-TYPES=[
- ("安全型","安全自在型","松弛 · 信任 · 边界","自带安全感，爱得从容，也放得下。"),
- ("安全型","温暖滋养型","主动 · 共情 · 稳定","关系里的小太阳，擅长把爱说出口。"),
- ("焦虑型","焦虑粘人型","焦虑 · 索取确认 · 敏感","爱得用力，越在乎越怕抓不住。"),
- ("焦虑型","试探博弈型","试探 · 内耗 · 患得患失","不敢直接要爱，用推开测试爱。"),
- ("回避型","回避疏离型","回避 · 独立 · 隔离","不是不爱，是不知道怎么靠太近。"),
- ("回避型","高冷抽离型","抽离 · 自我 · 压抑","心门锁得很死，亲密对你像危险。"),
- ("恐惧型","恐惧纠结型","恐惧 · 推拉 · 矛盾","又想靠近又怕被伤，于是边爱边逃。"),
- ("恐惧型","崩塌逃离型","逃离 · 自我保护 · 崩塌","关系一认真，就想先跑为敬。"),
-]
+# ============ DETAIL 1080 x auto（结果里有什么内容） ============
 def detail():
     W=1080
-    head=300; card_h=196; gap=22; foot=90
-    H=head+len(TYPES)*(card_h+gap)+foot
+    head=300; ch=120; gap=16; foot=96
+    MODS=[
+      ("组合词拆解","拆出 3 个关键词，逐一讲清你的核心依恋特质"),
+      ("典型表现","亲密关系 / 日常相处 / 发消息，三种场景下的真实样子"),
+      ("内心独白","一句戳中你的心里话，照见你没说出口的在意"),
+      ("对恋人的影响","好的方面 + 容易踩的坑，看清你带给对方什么"),
+      ("雷区预警","哪些行为会悄悄伤到关系，提前帮你避雷"),
+      ("怎么调整自己","不鸡汤，给你一套能立刻落地改善的方法"),
+      ("本周小练习","一个马上能做的小行动，让改变从今天开始"),
+      ("最适合的搭档","你和哪种依恋类型最合拍，谁最能接住你"),
+      ("你的双轴指数","焦虑指数 + 回避指数，看清你在两条轴上的位置"),
+    ]
+    H=head+len(MODS)*(ch+gap)+foot
     img=gradient((W,H))
     img=glow(img,180,160,260,C_GOLD,70)
     img=glow(img,920,H-260,300,C_GOLD2,60)
     d=ImageDraw.Draw(img)
-    hf=F(46,True); draw_text(d,(W/2,90),"8 种依恋细分类型",hf,fill=C_GOLD)
-    sf=F(30); draw_text(d,(W/2,150),"从安全 / 焦虑 / 回避 / 恐惧，再细到你的专属相处模式",sf,fill=C_MUTED)
-    draw_text(d,(W/2,200),"测完你会拿到：组合词拆解 · 典型表现 · 对恋人影响 · 怎么调整",sf,fill=C_MUTED)
+    hf=F(46,True); draw_text(d,(W/2,90),"测完你会拿到什么",hf,fill=C_GOLD)
+    sf=F(30); draw_text(d,(W/2,150),"8 大维度深度解读，像被人看穿了一遍",sf,fill=C_MUTED)
+    draw_text(d,(W/2,200),"单主结果 · 一份专属你的依恋风格报告",sf,fill=C_MUTED)
     y=head
-    for cat,name,chips,one in TYPES:
+    for k,(name,desc) in enumerate(MODS,1):
         x0,x1=60,W-60
-        rr(d,(x0,y,x1,y+card_h),22,fill=(55,25,50),outline=C_GOLD,width=2)
-        cf=F(26,True); draw_text(d,(x0+150,y+44),cat,cf,fill=C_GOLD2,anchor="mm")
-        nf=F(42,True); draw_text(d,(x0+150,y+96),name,nf,fill=C_TEXT,anchor="mm")
-        chf=F(27); draw_text(d,(x0+150,y+150),chips,chf,fill=C_GOLD,anchor="mm")
-        olf=F(28)
-        lines=wrap(one, olf, 360)
-        ty=y+card_h/2-(len(lines)-1)*20
-        for ln in lines:
-            draw_text(d,(x1-30,ty),ln,olf,fill=C_MUTED,anchor="rm")
-            ty+=40
-        y+=card_h+gap
-    cf=F(30,True); draw_text(d,(W/2,H-46),"原创出品 © 小船",cf,fill=C_GOLD)
+        rr(d,(x0,y,x1,y+ch),20,fill=(55,25,50),outline=C_GOLD,width=2)
+        bx=x0+62
+        rr(d,(bx-28,y+ch/2-28,bx+28,y+ch/2+28),16,fill=C_GOLD)
+        bf=F(30,True); draw_text(d,(bx,y+ch/2),str(k),bf,fill=C_INK)
+        nf=F(34,True); draw_text(d,(x0+180,y+ch/2-18),name,nf,fill=C_GOLD,anchor="lm")
+        df=F(26); draw_text(d,(x0+180,y+ch/2+22),desc,df,fill=C_MUTED,anchor="lm")
+        y+=ch+gap
+    cf=F(30,True); draw_text(d,(W/2,H-50),"原创出品 © 小船",cf,fill=C_GOLD)
     img.save(os.path.join(WS,"tianming_attachment_detail.png"))
     print("detail saved", H)
 
