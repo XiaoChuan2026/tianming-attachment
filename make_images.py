@@ -115,8 +115,8 @@ def cover():
         ("回避型","靠近了就想后退"),
         ("恐惧型","又想要又怕受伤"),
     ]
-    bw,bh=230,140
-    xs=[W/2-250, W/2+250]
+    bw,bh=220,140
+    xs=[W/2-160, W/2+160]
     ys=[590, 750]
     for (name,tag),(cx,cy) in zip(TYPE4, [(x,y) for y in ys for x in xs]):
         box=(cx-bw/2, cy-bh/2, cx+bw/2, cy+bh/2)
