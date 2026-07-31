@@ -108,15 +108,28 @@ def cover():
     # 卖点小字
     sf=F(32)
     draw_text(d,(W/2,410),"看清你的相处模式，把关系处得更舒服",sf,fill=C_MUTED)
-    # 中间大字「你的依恋类型」
-    mf=F(96,True)
-    draw_text(d,(W/2,640),"你的依恋类型",mf,fill=C_GOLD)
-    # 类型小字
-    tf2=F(34,True)
-    draw_text(d,(W/2,860),"4 大依恋类型 · 8 种细分风格",tf2,fill=C_GOLD2)
-    # 底部卖点
+    # 中间 4 个类型小方框（2x2）
+    TYPE4=[
+        ("安全型","爱得从容又踏实"),
+        ("焦虑型","越在乎越怕失去"),
+        ("回避型","靠近了就想后退"),
+        ("恐惧型","又想要又怕受伤"),
+    ]
+    bw,bh=230,140
+    xs=[W/2-250, W/2+250]
+    ys=[590, 750]
+    for (name,tag),(cx,cy) in zip(TYPE4, [(x,y) for y in ys for x in xs]):
+        box=(cx-bw/2, cy-bh/2, cx+bw/2, cy+bh/2)
+        rr(d, box, 22, fill=(55,25,50), outline=C_GOLD, width=2)
+        nf=F(40,True); draw_text(d,(cx,cy-22),name,nf,fill=C_GOLD)
+        tf=F(24); draw_text(d,(cx,cy+28),tag,tf,fill=C_MUTED)
+    # 权威背书卖点
+    af=F(26,True)
+    draw_text(d,(W/2,892),"经典依恋理论 · 约翰·鲍比创立 · 哈赞谢弗成人依恋研究",af,fill=C_GOLD2)
+    # 底部小字
     hf=F(28,True)
-    draw_text(d,(W/2,940),"心理测评 · 单主结果 · 丰富解读",hf,fill=C_GOLD)
+    draw_text(d,(W/2,955),"4 大依恋类型 · 8 种细分风格",hf,fill=C_GOLD)
+    draw_text(d,(W/2,1005),"心理测评 · 单主结果 · 丰富解读",hf,fill=C_GOLD)
     # copyright
     cf=F(30,True)
     draw_text(d,(W/2,H-70),"原创出品 © 小船",cf,fill=C_GOLD)
