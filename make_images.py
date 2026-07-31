@@ -90,7 +90,7 @@ def poster():
     img.save(os.path.join(WS,"tianming_attachment_poster.png"))
     print("poster saved")
 
-# ============ COVER 1080x1440（带「依恋」圆圈 + 卖点小字） ============
+# ============ COVER 1080x1440（作品封面：带「依恋」圆圈 + 卖点小字，无二维码） ============
 def cover():
     W,H=1080,1440
     img=gradient((W,H))
@@ -117,13 +117,9 @@ def cover():
     # 类型小字
     tf2=F(34,True)
     draw_text(d,(W/2,860),"4 大依恋类型 · 8 种细分风格",tf2,fill=C_GOLD2)
-    # QR card
-    qr=make_qr().resize((220,220))
-    card_x,card_y,cw,ch=W/2-150,960,300,340
-    rr(d,(card_x,card_y,card_x+cw,card_y+ch),26,fill=(255,255,255,235))
-    img.paste(qr,(int(W/2-110),int(card_y+36)))
-    qf=F(28,True)
-    draw_text(d,(W/2,card_y+ch-44),"扫码测一测你的依恋类型",qf,fill=C_INK)
+    # 底部卖点
+    hf=F(28,True)
+    draw_text(d,(W/2,940),"心理测评 · 单主结果 · 丰富解读",hf,fill=C_GOLD)
     # copyright
     cf=F(30,True)
     draw_text(d,(W/2,H-70),"原创出品 © 小船",cf,fill=C_GOLD)
