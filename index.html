@@ -83,7 +83,14 @@ footer{position:fixed;bottom:0;left:0;right:0;height:46px;display:flex;align-ite
 </style>
 </head>
 <body>
-<div id="quiz" class="wrap">
+<div id="intro" class="wrap center">
+  <span class="pill">依恋风格 · 心理测评</span>
+  <h1>依恋类型测试</h1>
+  <p class="sub">恋爱里你是哪一种？<br>看清自己的相处模式，把关系处得更舒服。</p>
+  <button class="btn" onclick="start()">开始测试</button>
+</div>
+
+<div id="quiz" class="wrap hide">
   <div class="bar"><i id="bar"></i></div>
   <div class="qno" id="qno"></div>
   <div class="q" id="q"></div>
@@ -105,7 +112,8 @@ const AX_T = DATA.axThresh, AV_T = DATA.avThresh, AX_M = DATA.axMax, AV_M = DATA
 let answers = new Array(Q.length).fill(-1);
 let cur = 0;
 
-renderQ();
+function start(){ document.getElementById('intro').classList.add('hide');
+  document.getElementById('quiz').classList.remove('hide'); renderQ(); }
 
 function renderQ(){
   const q = Q[cur];
