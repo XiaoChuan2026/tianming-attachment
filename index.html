@@ -113,8 +113,8 @@ const AX_T = DATA.axThresh, AV_T = DATA.avThresh, AX_M = DATA.axMax, AV_M = DATA
 let answers = new Array(Q.length).fill(-1);
 let cur = 0;
 
-function start(){ document.getElementById('intro').style.display='none';
-  document.getElementById('quiz').style.display='block'; renderQ(); }
+function start(){ document.getElementById('intro').classList.add('hide');
+  document.getElementById('quiz').classList.remove('hide'); renderQ(); }
 
 function renderQ(){
   const q = Q[cur];
@@ -157,8 +157,8 @@ function pct(v,m){ return Math.max(4,Math.min(100,Math.round(v/m*100))); }
 
 function finish(){
   const r=compute(answers); const d=T[r.type];
-  document.getElementById('quiz').style.display='none';
-  const R=document.getElementById('result'); R.className='res-ct'; R.style.display='block';
+  document.getElementById('quiz').classList.add('hide');
+  const R=document.getElementById('result'); R.className='res-ct'; R.classList.remove('hide');
   let h='';
   h+='<div class="res-cat">'+d.cat+'</div>';
   h+='<div class="res-name">'+d.name+'</div>';
@@ -188,8 +188,8 @@ function finish(){
 }
 function restart(){
   answers=new Array(Q.length).fill(-1); cur=0;
-  document.getElementById('result').style.display='none';
-  document.getElementById('quiz').style.display='block'; renderQ();
+  document.getElementById('result').classList.add('hide');
+  document.getElementById('quiz').classList.remove('hide'); renderQ();
 }
 </script>
 </body>
