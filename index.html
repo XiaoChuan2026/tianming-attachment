@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>你是哪种依恋类型？</title>
+<title>依恋类型测试</title>
 <style>
 :root{
   --bg1:#150a1f; --bg2:#2e1430; --bg3:#4a1f3e;
@@ -83,15 +83,7 @@ footer{position:fixed;bottom:0;left:0;right:0;height:46px;display:flex;align-ite
 </style>
 </head>
 <body>
-<div id="intro" class="wrap center">
-  <span class="pill">依恋风格 · 心理测评</span>
-  <h1>你是哪种依恋类型？</h1>
-  <p class="sub">恋爱里你是哪一种？测测你的依恋风格，<br>看清自己的相处模式，把关系处得更舒服。</p>
-  <button class="btn" onclick="start()">开始测试</button>
-  <p class="tip">本测试为娱乐心理参考，结果不构成专业诊断。</p>
-</div>
-
-<div id="quiz" class="wrap hide">
+<div id="quiz" class="wrap">
   <div class="bar"><i id="bar"></i></div>
   <div class="qno" id="qno"></div>
   <div class="q" id="q"></div>
@@ -113,8 +105,7 @@ const AX_T = DATA.axThresh, AV_T = DATA.avThresh, AX_M = DATA.axMax, AV_M = DATA
 let answers = new Array(Q.length).fill(-1);
 let cur = 0;
 
-function start(){ document.getElementById('intro').classList.add('hide');
-  document.getElementById('quiz').classList.remove('hide'); renderQ(); }
+renderQ();
 
 function renderQ(){
   const q = Q[cur];
@@ -130,7 +121,7 @@ function renderQ(){
   document.getElementById('prevBtn').style.visibility = cur===0?'hidden':'visible';
   document.getElementById('nextBtn').textContent = (cur===Q.length-1)?'查看结果':'下一题';
 }
-function choose(i){ answers[cur]=i; renderQ(); }
+function choose(i){ answers[cur]=i; renderQ(); setTimeout(()=>next(), 260); }
 function next(){
   if(answers[cur]===-1) return;
   if(cur<Q.length-1){cur++;renderQ();}
@@ -182,6 +173,7 @@ function finish(){
   h+='<div class="axis"><div class="top"><span>你的焦虑指数</span><span>'+pct(r.ax,AX_M)+'%</span></div><div class="track"><i style="width:'+pct(r.ax,AX_M)+'%"></i></div></div>';
   h+='<div class="axis"><div class="top"><span>你的回避指数</span><span>'+pct(r.av,AV_M)+'%</span></div><div class="track"><i style="width:'+pct(r.av,AV_M)+'%"></i></div></div>';
   h+='<p class="tip">把结果分享给另一半，一起聊聊你们的相处模式～</p>';
+  h+='<p style="text-align:center;font-size:11px;color:var(--muted);margin:8px 0 0;opacity:.6">本测试为娱乐心理参考，结果不构成专业诊断。</p>';
   h+='<button class="btn" onclick="restart()">重新测一次</button>';
   R.innerHTML=h;
   window.scrollTo(0,0);

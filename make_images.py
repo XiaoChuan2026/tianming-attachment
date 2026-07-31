@@ -90,7 +90,7 @@ def poster():
     img.save(os.path.join(WS,"tianming_attachment_poster.png"))
     print("poster saved")
 
-# ============ COVER 1080x1440（宣传版） ============
+# ============ COVER 1080x1440（带「依恋」圆圈 + 卖点小字） ============
 def cover():
     W,H=1080,1440
     img=gradient((W,H))
@@ -104,18 +104,22 @@ def cover():
     draw_text(d,(W/2,182),pill,pf,fill=C_GOLD)
     # title
     tf=F(76,True)
-    draw_text(d,(W/2,360),"你是哪种依恋类型？",tf,fill=C_TEXT)
-    # 宣传语（清晰但不刺眼）
-    sf=F(50,True)
-    draw_text(d,(W/2,470),"4 大依恋类型 · 8 种细分风格",sf,fill=C_GOLD2)
-    # tagline
-    gf=F(34)
-    draw_text(d,(W/2,560),"看清你的相处模式，把关系处得更舒服",gf,fill=C_MUTED)
-    hf=F(28,True)
-    draw_text(d,(W/2,650),"心理测评 · 单主结果 · 丰富解读",hf,fill=C_GOLD2)
-    # QR card（适度，方便扫码）
+    draw_text(d,(W/2,330),"你是哪种依恋类型？",tf,fill=C_TEXT)
+    # 卖点小字
+    sf=F(32)
+    draw_text(d,(W/2,410),"看清你的相处模式，把关系处得更舒服",sf,fill=C_MUTED)
+    # 「依恋」圆圈
+    cx,cy=540,640
+    d.ellipse([cx-180,cy-180,cx+180,cy+180], outline=C_GOLD, width=5)
+    d.ellipse([cx-150,cy-150,cx+150,cy+150], outline=C_GOLD2, width=2)
+    ef=F(120,True)
+    draw_text(d,(cx,cy),"依恋",ef,fill=C_TEXT)
+    # 类型小字
+    tf2=F(34,True)
+    draw_text(d,(W/2,860),"4 大依恋类型 · 8 种细分风格",tf2,fill=C_GOLD2)
+    # QR card
     qr=make_qr().resize((220,220))
-    card_x,card_y,cw,ch=W/2-150,860,300,340
+    card_x,card_y,cw,ch=W/2-150,960,300,340
     rr(d,(card_x,card_y,card_x+cw,card_y+ch),26,fill=(255,255,255,235))
     img.paste(qr,(int(W/2-110),int(card_y+36)))
     qf=F(28,True)
